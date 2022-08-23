@@ -2,12 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Survivor", menuName = "Survivor")]
-public class Survivor : ScriptableObject
+public class Survivor
 {
     public string name;
-    public int maxHealth;
+    public Sprite sprite;
 
-    public Card[] cards; 
+    [Header("Stats")]
+    public ushort health;
+    public ushort hunger;
+    public ushort sanity;
 
+    [Header("Skills")]
+    public ushort medicSkill;
+    public ushort hunterSkill;
+    public ushort forgerSkill;
+    public ushort fighterSkill;
+
+    public Survivor(string name, Sprite sprite)
+    {
+        this.name = name;
+        this.sprite = sprite;
+
+        health = 3;
+        hunger = 10;
+        sanity = 5;
+    }
 }
