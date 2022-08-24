@@ -29,15 +29,40 @@ public class PartyManager : MonoBehaviour
         {
             Debug.LogError("Party size needs to have at least a single survivor!");
         }
-
-        #if DEBUG
-            Debug.Log("Party created!");
-        #endif
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
+    public void AddSkillPt(string input)
+    {
+        string[] allInput = input.Split(' ');
+        int characterNum = int.Parse(allInput[1]);
+        int amount = int.Parse(allInput[2]);
+        switch(int.Parse(allInput[0]))
+        {
+            case (0):
+                party[characterNum].hunterSkill += amount;
+                break;
+            case (1):
+                party[characterNum].medicSkill += amount;
+                break;
+            case (2):
+                party[characterNum].chiefSkill += amount;
+                break;
+            case (3):
+                party[characterNum].navigatorSkill += amount;
+                break;
+            case (4):
+                party[characterNum].forgerSkill += amount;
+                break;
+            case (5):
+                party[characterNum].mysticSkill += amount;
+                break;
+        }
     }
 }

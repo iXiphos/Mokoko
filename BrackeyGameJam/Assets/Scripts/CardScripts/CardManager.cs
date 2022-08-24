@@ -30,7 +30,6 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(hand.Count > 0)
@@ -41,8 +40,8 @@ public class CardManager : MonoBehaviour
                 Vector2 newPos = new Vector2(Math.Clamp((totalHorizontalSize / hand.Count()), minCardMargin, maxCardMargin) * i, 0);
                 if (hand[i] == activeCard)
                 {
-                    newPos.y += 250;
-                    newSize = new Vector2(1.5f, 1.5f);
+                    newPos.y += 400;
+                    newSize = new Vector2(1.25f, 1.25f);
                 }
                 hand[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(hand[i].GetComponent<RectTransform>().anchoredPosition, newPos, 0.05f);
                 hand[i].GetComponent<RectTransform>().localScale = Vector2.Lerp(hand[i].GetComponent<RectTransform>().localScale, newSize, 0.05f);
@@ -71,7 +70,7 @@ public class CardManager : MonoBehaviour
         hand.Remove(gm);
     }
 
-    private void DrawCard(ushort amountOfTimes)
+    public void DrawCard(ushort amountOfTimes)
     {
         for(int i = 0; i < amountOfTimes; i++)
         {
