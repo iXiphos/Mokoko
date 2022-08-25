@@ -30,7 +30,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-
+            //Into Scene
         }
     }
 }

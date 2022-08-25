@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PartyManager : MonoBehaviour
 {
@@ -13,11 +15,15 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField]
     private Sprite[] allSprites;
-    public Survivor[] party;
+    public List<Survivor> party;
+    private GameObject upgradeScreen;
+    private bool firstTimeUpgrading;
 
     void Start()
     {
-        party = new Survivor[PARTY_SIZE];
+        party = new List<Survivor>(PARTY_SIZE);
+        firstTimeUpgrading = true;
+        upgradeScreen = GameObject.Find("MainCanvas").transform.Find("UpgradeScreen").gameObject;
         System.Random rand = new System.Random();
 
         for (int i = 0; i < PARTY_SIZE; i++)
@@ -25,7 +31,7 @@ public class PartyManager : MonoBehaviour
             party[i] = new Survivor(allNames[rand.Next(0, allNames.Length)], allSprites[rand.Next(0, allSprites.Length)]);
         }
 
-        if(party.Length <= 0)
+        if(party.Count <= 0)
         {
             Debug.LogError("Party size needs to have at least a single survivor!");
         }
@@ -40,9 +46,15 @@ public class PartyManager : MonoBehaviour
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {
-        string[] allInput = input.Split(' ');
+        string[] allInput = input.Split(',');
         int characterNum = int.Parse(allInput[1]);
         int amount = int.Parse(allInput[2]);
+
+        if(characterNum > party.Count)
+        {
+            return;
+        }
+
         switch(int.Parse(allInput[0]))
         {
             case (0):
@@ -63,6 +75,18 @@ public class PartyManager : MonoBehaviour
             case (5):
                 party[characterNum].mysticSkill += amount;
                 break;
+        }
+
+        GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
+
+        playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshPro>().text = (int.Parse(playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshPro>().text) + 1).ToString();
+
+        if (firstTimeUpgrading)
+        {
+            foreach (Transform child in playerUpgrades.transform)
+            {
+                child.GetComponent<Button>().enabled = false;
+            }
         }
     }
 }
