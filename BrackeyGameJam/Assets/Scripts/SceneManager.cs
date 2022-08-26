@@ -11,17 +11,16 @@ public enum LevelTypes
 
 public class SceneManager : MonoBehaviour
 {
-    private GameObject Canvas;
-
-    public LevelTypes nextLevelType;
     public GameObject[] pitStops;
     public GameObject[] restStops;
     public GameObject[] treasureStops;
 
+    private GameObject InGameUI;
+
 
     public void Start()
     {
-        Canvas = GameObject.Find("MainCanvas");
+        InGameUI = GameObject.Find("MainCanvas").transform.Find("InGameUI").gameObject;
     }
 
     public void EnterScene()
@@ -37,6 +36,7 @@ public class SceneManager : MonoBehaviour
     public void SpawnNextScene(LevelTypes levelType, string stopName = "")
     {
         GameObject newLevel = pitStops[0];
+        System.Random rand = new System.Random();
         switch (levelType)
         {
             case LevelTypes.Pitstop:
@@ -50,10 +50,11 @@ public class SceneManager : MonoBehaviour
                 }
                 else
                 {
-                    System.Random rand = new System.Random();
                     newLevel = pitStops[rand.Next(0, pitStops.Length)];
                 }
+                InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
                 break;
+
             case LevelTypes.Reststop:
                 if (stopName == "")
                 {
@@ -65,10 +66,11 @@ public class SceneManager : MonoBehaviour
                 }
                 else
                 {
-                    System.Random rand = new System.Random();
                     newLevel = pitStops[rand.Next(0, pitStops.Length)];
                 }
+                InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(true);
                 break;
+
             case LevelTypes.Treasurestop:
                 if (stopName == "")
                 {
@@ -80,9 +82,9 @@ public class SceneManager : MonoBehaviour
                 }
                 else
                 {
-                    System.Random rand = new System.Random();
                     newLevel = pitStops[rand.Next(0, pitStops.Length)];
                 }
+                InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
                 break;
         }
 

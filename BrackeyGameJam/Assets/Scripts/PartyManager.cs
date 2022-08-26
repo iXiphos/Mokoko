@@ -18,23 +18,27 @@ public class PartyManager : MonoBehaviour
     public List<Survivor> party;
     private GameObject upgradeScreen;
     private bool firstTimeUpgrading;
+    public int upgradePoints;
 
     void Start()
     {
         party = new List<Survivor>(PARTY_SIZE);
         firstTimeUpgrading = true;
+        upgradePoints = 4;
         upgradeScreen = GameObject.Find("MainCanvas").transform.Find("UpgradeScreen").gameObject;
         System.Random rand = new System.Random();
 
         for (int i = 0; i < PARTY_SIZE; i++)
         {
-            party[i] = new Survivor(allNames[rand.Next(0, allNames.Length)], allSprites[rand.Next(0, allSprites.Length)]);
+            party.Add(new Survivor(allNames[rand.Next(0, allNames.Length)], allSprites[rand.Next(0, allSprites.Length)]));
         }
 
         if(party.Count <= 0)
         {
             Debug.LogError("Party size needs to have at least a single survivor!");
         }
+
+        Debug.Log("Party size is:" + party.Count);
     }
 
     // Update is called once per frame
@@ -43,12 +47,20 @@ public class PartyManager : MonoBehaviour
         
     }
 
+    public void OpenUpgradeMenu(bool open)
+    {
+        upgradePoints += 2;
+        upgradeScreen.SetActive(open);
+    }
+
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {
         string[] allInput = input.Split(',');
         int characterNum = int.Parse(allInput[1]);
         int amount = int.Parse(allInput[2]);
+
+        upgradePoints--;
 
         if(characterNum > party.Count)
         {
@@ -76,17 +88,20 @@ public class PartyManager : MonoBehaviour
                 party[characterNum].mysticSkill += amount;
                 break;
         }
-
+        
         GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
-
-        playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshPro>().text = (int.Parse(playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshPro>().text) + 1).ToString();
-
+        
+        playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshProUGUI>().text = (int.Parse(playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshProUGUI>().text) + 1).ToString();
+        
         if (firstTimeUpgrading)
         {
             foreach (Transform child in playerUpgrades.transform)
             {
                 child.GetComponent<Button>().enabled = false;
+                child.GetComponent<Image>().color = Color.grey;
             }
         }
+
+        
     }
 }
