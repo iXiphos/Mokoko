@@ -31,6 +31,7 @@ public class CameraScript : MonoBehaviour
         else
         {
             //Into Scene
+            Canvas.transform.Find("MapView").GetChild(0).GetChild(0).GetComponent<MapScript>().UpdateMap();
         }
     }
 }
