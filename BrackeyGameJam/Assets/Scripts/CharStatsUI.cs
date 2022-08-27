@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CharStatsUI : MonoBehaviour
 {
-    private bool selectState;
+    public bool selectState;
     private Vector2 defaultPos;
     public RectTransform selectPos;
     void Start()
@@ -45,27 +45,30 @@ public class CharStatsUI : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(float percent)
+    public void UpdateHealth(float amount, int maxAmount)
     {
+        amount = amount/maxAmount;
+
         RectTransform rect = gameObject.transform.Find("Health").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        percent = 1 - percent;
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -percent;
+        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
     }
 
-    public void UpdateHunger(float percent)
+    public void UpdateSanity(float amount, int maxAmount)
     {
-        RectTransform rect = gameObject.transform.Find("Hunger").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        percent = 1 - percent;
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -percent;
-        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
-    }
+        amount = amount / maxAmount;
 
-    public void UpdateSanity(float percent)
-    {
         RectTransform rect = gameObject.transform.Find("Sanity").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        percent = 1 - percent;
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -percent;
+        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
+    }
+
+    public void UpdateHunger(float amount, int maxAmount)
+    {
+        amount = amount / maxAmount;
+
+        RectTransform rect = gameObject.transform.Find("Hunger").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
+        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
     }
 }

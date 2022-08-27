@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class CardManager : MonoBehaviour
 {
     public GameObject cardObject;
     public Card tempCard;
+    private Canvas mainCanvas;
 
     public int minCardMargin;
     public int maxCardMargin;
     public int totalHorizontalSize = 1000;
 
     public GameObject activeCard;
+
+    public GameObject draggingCard;
+    public Vector2 dragCardPos;
 
     Stack<Card> deck = new Stack<Card>();
     List<GameObject> hand = new List<GameObject>();
@@ -24,6 +29,7 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         for (int i = 0; i < 200; i++)
         {
             deck.Push(tempCard);
@@ -36,15 +42,24 @@ public class CardManager : MonoBehaviour
         {
             for(int i = 0; i < hand.Count; i++)
             {
-                Vector2 newSize = new Vector2(1.0f, 1.0f);
-                Vector2 newPos = new Vector2(Math.Clamp((totalHorizontalSize / hand.Count()), minCardMargin, maxCardMargin) * i, 0);
-                if (hand[i] == activeCard)
+                if (hand[i] != draggingCard)
                 {
-                    newPos.y += 400;
-                    newSize = new Vector2(1.25f, 1.25f);
+                    Vector2 newSize = new Vector2(1.0f, 1.0f);
+                    Vector2 newPos = new Vector2(Math.Clamp((totalHorizontalSize / hand.Count()), minCardMargin, maxCardMargin) * i, 0);
+                    if (hand[i] == activeCard)
+                    {
+                        newPos.y += 400;
+                        newSize = new Vector2(1.25f, 1.25f);
+                    }
+                    hand[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(hand[i].GetComponent<RectTransform>().anchoredPosition, newPos, 0.05f);
+                    hand[i].GetComponent<RectTransform>().localScale = Vector2.Lerp(hand[i].GetComponent<RectTransform>().localScale, newSize, 0.05f);
                 }
-                hand[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(hand[i].GetComponent<RectTransform>().anchoredPosition, newPos, 0.05f);
-                hand[i].GetComponent<RectTransform>().localScale = Vector2.Lerp(hand[i].GetComponent<RectTransform>().localScale, newSize, 0.05f);
+                else
+                {
+                    Vector2 newSize = new Vector2(0.5f, 0.5f);
+                    hand[i].GetComponent<RectTransform>().localScale = Vector2.Lerp(hand[i].GetComponent<RectTransform>().localScale, newSize, 0.05f);
+                }
+
             }
         }
 

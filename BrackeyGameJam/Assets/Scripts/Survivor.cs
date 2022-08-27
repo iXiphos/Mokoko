@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class Survivor
 {
@@ -25,8 +26,15 @@ public class Survivor
         }
         set
         {
-            sanity = Mathf.Clamp(value, 0, maxSanity);
-            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateSanity(value / maxSanity);
+            sanity += value;
+            Mathf.Clamp(sanity, 0, maxSanity);
+            Debug.Log("--[" + this.name + "] has taken " + value + " sanity!" + "Now has " + this.sanity);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateSanity(sanity, maxSanity);
+
+            if (sanity <= 0)
+            {
+                Debug.Log("--[" + this.name + "] has DIED from sanity. L");
+            }
         }
     }
 
@@ -38,8 +46,15 @@ public class Survivor
         }
         set
         {
-            hunger = Mathf.Clamp(value, 0, maxHunger);
-            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHunger(value / maxHunger);
+            hunger += value;
+            Mathf.Clamp(sanity, 0, maxHunger);
+            Debug.Log("--[" + this.name + "] has taken " + value + " hunger! Now has " + this.hunger);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHunger(hunger, maxHunger);
+
+            if (hunger <= 0)
+            {
+                Debug.Log("--[" + this.name + "] has DIED from hunger. L");
+            }
 
         }
     }
@@ -52,8 +67,17 @@ public class Survivor
         }
         set
         {
-            health = Mathf.Clamp(value, 0, maxHealth);
-            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHealth(value/maxHealth);
+            health += value;
+            Mathf.Clamp(health, 0, maxHealth);
+            Debug.Log("--[" + this.name + "] has taken " + value + " damage!" +" Now has " + this.health);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHealth(health, maxHealth);
+
+            if(health <= 0)
+            {
+                Debug.Log("--[" + this.name + "] has DIED from health. L");
+                GameObject.Find("GameManager").GetComponent<PartyManager>().party.Remove(this);
+                MonoBehaviour.Destroy(GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).gameObject);
+            }
         }
     }
 
