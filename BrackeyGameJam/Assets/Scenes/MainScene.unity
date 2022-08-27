@@ -1238,6 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58928deb19feba4a88d5df5ffd19cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectState: 0
   selectPos: {fileID: 236076767}
 --- !u!222 &71732829
 CanvasRenderer:
@@ -1417,10 +1418,10 @@ RectTransform:
   m_Father: {fileID: 2094609858}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1284, y: 435}
-  m_SizeDelta: {x: 565.2, y: 237.7}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -433, y: -734}
+  m_SizeDelta: {x: 565.19995, y: 237.69995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85493050
 MonoBehaviour:
@@ -4767,6 +4768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58928deb19feba4a88d5df5ffd19cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectState: 0
   selectPos: {fileID: 968344097}
 --- !u!222 &600736247
 CanvasRenderer:
@@ -5406,6 +5408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58928deb19feba4a88d5df5ffd19cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectState: 0
   selectPos: {fileID: 87295017}
 --- !u!222 &646539518
 CanvasRenderer:
@@ -5585,9 +5588,9 @@ RectTransform:
   m_Father: {fileID: 2094609858}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -1083}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &670054738
@@ -7650,12 +7653,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a41a572c2f638741b29e824d0620bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marginX: 0
+  marginX: 200
   marginY: 300
+  min_rooms: 2
+  max_rooms: 5
+  randomRangeOffsetX: 50
+  randomRangeOffsetY: 50
   nodePrefab: {fileID: 964918327927996861, guid: 96f1c7880f106de4ea6928f512052c70, type: 3}
   mapStart: {fileID: 395694903}
   lastNodeVisited: {fileID: 0}
   currentLevel: 0
+  wieghtPrecentIncrease: 10
+  baseWeights: 6400000000000000
 --- !u!1 &924137328
 GameObject:
   m_ObjectHideFlags: 0
@@ -11213,6 +11222,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c2b853a648bb184891da485153e2c71, type: 3}
   - {fileID: 21300000, guid: 9c2b853a648bb184891da485153e2c71, type: 3}
   upgradePoints: 0
+  hunterDeck: []
+  medicDeck: []
+  chefDeck: []
+  navigatorDeck: []
+  foragerDeck: []
+  mysticDeck: []
 --- !u!1 &1484995298
 GameObject:
   m_ObjectHideFlags: 0
@@ -12507,6 +12522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58928deb19feba4a88d5df5ffd19cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectState: 0
   selectPos: {fileID: 141628679}
 --- !u!95 &1776693927
 Animator:
