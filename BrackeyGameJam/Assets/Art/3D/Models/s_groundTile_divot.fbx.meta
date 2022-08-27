@@ -3,7 +3,12 @@ guid: e1d300d4e366d8f47a9f7bd379cf16cb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pmcColor_23
+    second: {fileID: 2100000, guid: d6ca808caad8c5a408c05c09196f369d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
