@@ -19,20 +19,69 @@ public class CardManager : MonoBehaviour
     public GameObject activeCard;
 
     public GameObject draggingCard;
-    public Vector2 dragCardPos;
 
     Stack<Card> deck = new Stack<Card>();
     List<GameObject> hand = new List<GameObject>();
     List<Card> discardPile = new List<Card>();
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
-        for (int i = 0; i < 200; i++)
+        generateDeck();
+    }
+
+    public void generateDeck()
+    {
+        if (deck.Count != 0) deck.Clear();
+        List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
+        for (int i = 0; i < survivors.Count; i++)
         {
-            deck.Push(tempCard);
+            for (int j = 0; j < 6; j++)
+            {
+                switch (j)
+                {
+                    case 0:
+                        for (int k = 0; k <= survivors[i].hunterSkill; k++)
+                        {
+                            Debug.Log("Output");
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().hunterDeck[k]);
+                        }
+                        break;
+                    case 1:
+                        for (int k = 0; k <= survivors[i].medicSkill; k++)
+                        {
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().medicDeck[k]);
+                        }
+                        break;
+                    case 2:
+                        for (int k = 0; k < survivors[i].chiefSkill; k++)
+                        {
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().chefDeck[k]);
+                        }
+                        break;
+                    case 3:
+                        for (int k = 0; k < survivors[i].navigatorSkill; k++)
+                        {
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().navigatorDeck[k]);
+                        }
+                        break;
+                    case 4:
+                        for (int k = 0; k < survivors[i].forgerSkill; k++)
+                        {
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().foragerDeck[k]);
+                        }
+                        break;
+                    case 5:
+                        for (int k = 0; k <= survivors[i].mysticSkill; k++)
+                        {
+                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().mysticDeck[k]);
+                        }
+                        break;
+                }
+            }
         }
     }
 
@@ -61,11 +110,6 @@ public class CardManager : MonoBehaviour
                 }
 
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            DrawCard(1);
         }
     }
 
