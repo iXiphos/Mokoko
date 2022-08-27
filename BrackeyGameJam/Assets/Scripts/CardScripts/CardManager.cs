@@ -17,12 +17,13 @@ public class CardManager : MonoBehaviour
     public int totalHorizontalSize = 1000;
 
     public GameObject activeCard;
+    private PartyManager PM;
 
     public GameObject draggingCard;
     public Vector2 dragCardPos;
 
     Stack<Card> deck = new Stack<Card>();
-    List<GameObject> hand = new List<GameObject>();
+    public List<GameObject> hand = new List<GameObject>();
     List<Card> discardPile = new List<Card>();
 
 
@@ -30,6 +31,7 @@ public class CardManager : MonoBehaviour
     void Start()
     {
         mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
         for (int i = 0; i < 200; i++)
         {
             deck.Push(tempCard);
@@ -115,6 +117,28 @@ public class CardManager : MonoBehaviour
             int randomIndex = rand.Next(i, discardPile.Count);
             discardPile[i] = discardPile[randomIndex];
             discardPile[randomIndex] = temp;
+        }
+    }
+
+    public void CheckForIllness()
+    {
+        foreach(GameObject card in hand)
+        {
+            if(card.GetComponent<Card>().cardName == "Illness")
+            {
+                foreach(Survivor person in PM.party)
+                {
+                    person.Health -= 2;
+                }
+            }
+        }
+    }
+
+    public void Infection(int amount)
+    {
+        foreach (Survivor person in PM.party)
+        {
+            person.Sanity -= amount;
         }
     }
 }

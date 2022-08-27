@@ -125,4 +125,40 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             }
         }
     }
+
+    //Unique Functions ---------------------------------------------------------------
+
+    public void Blessing()
+    {
+        target.hunterSkill += 2;
+        target.medicSkill += 2;
+        target.forgerSkill += 2;
+        target.navigatorSkill += 2;
+        target.chiefSkill += 2;
+        target.mysticSkill += 2;
+    }
+
+    public void NobleSacrifice()
+    {
+        target.Health = 0;
+        Survivor person = PM.party[0];
+
+        person.hunterSkill += 3;
+        person.medicSkill += 3;
+        person.forgerSkill += 3;
+        person.navigatorSkill += 3;
+        person.chiefSkill += 3;
+        person.mysticSkill += 3;
+    }
+
+    public void Panecea()
+    {
+        foreach(GameObject card in CM.hand)
+        {
+            if(card.GetComponent<Card>().name == "Illness" || card.GetComponent<Card>().name == "Infection")
+            {
+                CM.RemoveFromHand(card);
+            }
+        }
+    }
 }

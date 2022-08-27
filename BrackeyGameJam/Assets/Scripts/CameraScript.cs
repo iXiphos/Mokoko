@@ -6,11 +6,13 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     private GameObject Canvas;
+    private CardManager CM;
     private SceneManager SM;
 
     void Start()
     {
         Canvas = GameObject.Find("MainCanvas");
+        CM = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>();
         SM = GameObject.Find("GameManager").GetComponent<SceneManager>(); 
     }
 
@@ -27,6 +29,7 @@ public class CameraScript : MonoBehaviour
         if(into != 0)
         {
             //Out of scene
+            CM.CheckForIllness();
         }
         else
         {
