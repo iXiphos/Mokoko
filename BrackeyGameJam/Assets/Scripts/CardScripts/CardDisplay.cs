@@ -61,4 +61,9 @@ public class CardDisplay : MonoBehaviour
             gameObject.transform.SetSiblingIndex(CM.GetIndexInHand(this.gameObject));
         }
     }
+
+    public void OnDrag()
+    {
+        
+    }
 }

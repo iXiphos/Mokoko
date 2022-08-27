@@ -6,6 +6,7 @@ public class Survivor
 {
     public string name;
     public Sprite sprite;
+    public int id;
 
     [Header("Stats")]
     private int health;
@@ -25,6 +26,7 @@ public class Survivor
         set
         {
             sanity = Mathf.Clamp(value, 0, maxSanity);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateSanity(value / maxSanity);
         }
     }
 
@@ -37,6 +39,8 @@ public class Survivor
         set
         {
             hunger = Mathf.Clamp(value, 0, maxHunger);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHunger(value / maxHunger);
+
         }
     }
 
@@ -49,6 +53,7 @@ public class Survivor
         set
         {
             health = Mathf.Clamp(value, 0, maxHealth);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHealth(value/maxHealth);
         }
     }
 
@@ -64,10 +69,11 @@ public class Survivor
 
 
 
-    public Survivor(string name, Sprite sprite)
+    public Survivor(string name, Sprite sprite, int id)
     {
         this.name = name;
         this.sprite = sprite;
+        this.id = id;
 
         health = 10;
         hunger = 10;

@@ -30,7 +30,7 @@ public class PartyManager : MonoBehaviour
 
         for (int i = 0; i < PARTY_SIZE; i++)
         {
-            party.Add(new Survivor(allNames[rand.Next(0, allNames.Length)], allSprites[rand.Next(0, allSprites.Length)]));
+            party.Add(new Survivor(allNames[rand.Next(0, allNames.Length)], allSprites[rand.Next(0, allSprites.Length)], i));
         }
 
         if(party.Count <= 0)
