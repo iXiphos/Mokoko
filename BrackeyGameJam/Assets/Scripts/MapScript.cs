@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-    private const int mapDepth = 8;
+    private const int mapDepth = 12;
 
     public short marginX;
     public short marginY;

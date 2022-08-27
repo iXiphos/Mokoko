@@ -11221,13 +11221,40 @@ MonoBehaviour:
   allSprites:
   - {fileID: 21300000, guid: 9c2b853a648bb184891da485153e2c71, type: 3}
   - {fileID: 21300000, guid: 9c2b853a648bb184891da485153e2c71, type: 3}
-  upgradePoints: 0
-  hunterDeck: []
-  medicDeck: []
-  chefDeck: []
-  navigatorDeck: []
-  foragerDeck: []
-  mysticDeck: []
+  upgradePoints: 9
+  hunterDeck:
+  - {fileID: 11400000, guid: 96dc3052e8a179f4bac58ac87ca97c3d, type: 2}
+  - {fileID: 11400000, guid: 50e2960bdc5122349aa804f50c3b7b0d, type: 2}
+  - {fileID: 11400000, guid: bf2b0cd9eaf9d68479c03e8b4f6c1387, type: 2}
+  - {fileID: 11400000, guid: 31473418dd66a0b4fa916045970c8ea7, type: 2}
+  - {fileID: 11400000, guid: db2b4a8e2f488294097aaddfcef478d3, type: 2}
+  medicDeck:
+  - {fileID: 11400000, guid: e851bc6befb28f6489a6a32bb85c51b0, type: 2}
+  - {fileID: 11400000, guid: 4f26feb80a89fdc43bff5752f4efcadd, type: 2}
+  - {fileID: 11400000, guid: 7f2bbbaf165ab48419375237c5d907f8, type: 2}
+  - {fileID: 11400000, guid: b2fb555162426cd4997e0d3a4c958e32, type: 2}
+  - {fileID: 11400000, guid: 0e4a8ca4545521c42a28cf09603502d6, type: 2}
+  chefDeck:
+  - {fileID: 11400000, guid: d13be64e0ffd1d547b880c6d9cbb49cb, type: 2}
+  - {fileID: 11400000, guid: 54aaffca2c161e04ba25614015864e52, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 2117976822f665d4ab61e221f73a0f0c, type: 2}
+  navigatorDeck:
+  - {fileID: 11400000, guid: 35cad594f5745ac4c8b6c459ac245fb0, type: 2}
+  - {fileID: 11400000, guid: 0701e2c964f65fc4aa757facdf88a7e6, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: cb85b2bec38539947995db80d6288aef, type: 2}
+  foragerDeck:
+  - {fileID: 11400000, guid: 1e6f5682cdd16554cb3b9f6b251bc15d, type: 2}
+  - {fileID: 11400000, guid: 928ff82680043a146a5458850c960be4, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 969925f57b074b74a92711eddf4365a0, type: 2}
+  mysticDeck:
+  - {fileID: 11400000, guid: 7fa13cd946c137841b01386a2dd1c1d1, type: 2}
+  - {fileID: 11400000, guid: 746169a4e0693a3478ec9b987e71eb9f, type: 2}
+  - {fileID: 11400000, guid: 951daa27307eb6242ba7e5df88aed70f, type: 2}
+  - {fileID: 11400000, guid: 7da99addc53e6d744840e7ee3fe41260, type: 2}
+  - {fileID: 11400000, guid: fc74fd605cd10a2409c92dcc841a1ffd, type: 2}
 --- !u!1 &1484995298
 GameObject:
   m_ObjectHideFlags: 0
