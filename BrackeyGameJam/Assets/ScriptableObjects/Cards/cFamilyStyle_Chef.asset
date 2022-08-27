@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed268c0d88c85e4c8f712a99165f4f1, type: 3}
+  m_Name: cFamilyStyle_Chef
+  m_EditorClassIdentifier: 
+  cardName: Family Style
+  description: Use 'Family Style' for +1 stats on all cards in hand
+  sprite: {fileID: 0}
+  deltaResource: 
+  resourceType: 
+  startingFunction: 
+  ExternalFunction: 
