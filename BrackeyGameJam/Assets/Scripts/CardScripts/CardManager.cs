@@ -89,6 +89,7 @@ public class CardManager : MonoBehaviour
             }
         }
         ShuffleDeck();
+        hand.Clear();
     }
 
     void Update()
