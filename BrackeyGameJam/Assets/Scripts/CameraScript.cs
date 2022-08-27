@@ -27,6 +27,8 @@ public class CameraScript : MonoBehaviour
         if(into != 0)
         {
             //Out of scene
+            GameObject.Find("CardManager").GetComponent<CardManager>().generateDeck();
+            GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(6);
         }
         else
         {
