@@ -21,7 +21,7 @@ public class CardManager : MonoBehaviour
 
     public GameObject draggingCard;
 
-    Stack<Card> deck = new Stack<Card>();
+    List<Card> deck = new List<Card>();
     public List<GameObject> hand = new List<GameObject>();
     List<Card> discardPile = new List<Card>();
     
@@ -38,6 +38,10 @@ public class CardManager : MonoBehaviour
     {
         if (deck.Count != 0) deck.Clear();
         List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
+        for (int i = 0; i < GameObject.Find("GameManager").GetComponent<PartyManager>().eventDeck.Count; i++)
+        {
+            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().eventDeck[i]);
+        }
         for (int i = 0; i < survivors.Count; i++)
         {
             for (int j = 0; j < 6; j++)
@@ -48,42 +52,43 @@ public class CardManager : MonoBehaviour
                         for (int k = 0; k <= survivors[i].hunterSkill; k++)
                         {
                             Debug.Log("Output");
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().hunterDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().hunterDeck[k]);
                         }
                         break;
                     case 1:
                         for (int k = 0; k <= survivors[i].medicSkill; k++)
                         {
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().medicDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().medicDeck[k]);
                         }
                         break;
                     case 2:
                         for (int k = 0; k < survivors[i].chiefSkill; k++)
                         {
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().chefDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().chefDeck[k]);
                         }
                         break;
                     case 3:
                         for (int k = 0; k < survivors[i].navigatorSkill; k++)
                         {
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().navigatorDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().navigatorDeck[k]);
                         }
                         break;
                     case 4:
                         for (int k = 0; k < survivors[i].forgerSkill; k++)
                         {
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().foragerDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().foragerDeck[k]);
                         }
                         break;
                     case 5:
                         for (int k = 0; k <= survivors[i].mysticSkill; k++)
                         {
-                            deck.Push(GameObject.Find("GameManager").GetComponent<PartyManager>().mysticDeck[k]);
+                            deck.Add(GameObject.Find("GameManager").GetComponent<PartyManager>().mysticDeck[k]);
                         }
                         break;
                 }
             }
         }
+        ShuffleDeck();
     }
 
     void Update()
@@ -134,19 +139,11 @@ public class CardManager : MonoBehaviour
     {
         for(int i = 0; i < amountOfTimes; i++)
         {
-            if (deck.Count() <= 0)
-            {
-                ShuffleDiscard();
-                deck = new Stack<Card>(discardPile);
-                discardPile.Clear();
-            }
-            else
-            {
-                GameObject card = Instantiate(cardObject, this.transform.GetChild(0));
-                hand.Add(card);
-                card.GetComponent<RectTransform>().Translate(Vector2.down * 5);
-                card.GetComponent<CardDisplay>().card = deck.Pop();
-            }
+            GameObject card = Instantiate(cardObject, this.transform.GetChild(0));
+            hand.Add(card);
+            card.GetComponent<RectTransform>().Translate(Vector2.down * 5);
+            card.GetComponent<CardDisplay>().card = deck[0];
+            deck.RemoveAt(0);
         }
     }
 
@@ -184,4 +181,18 @@ public class CardManager : MonoBehaviour
             person.Sanity -= amount;
         }
     }
+
+    private void ShuffleDeck()
+    {
+        System.Random rand = new System.Random();
+
+        for (int i = 0; i < deck.Count; i++)
+        {
+            Card temp = deck[i];
+            int randomIndex = rand.Next(i, deck.Count);
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = temp;
+        }
+    }
+
 }
