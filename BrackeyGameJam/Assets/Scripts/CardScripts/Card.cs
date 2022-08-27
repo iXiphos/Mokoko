@@ -5,21 +5,22 @@ using UnityEngine;
 public enum ResourceType
 {
     NULL,
-    Food,
-    Water
+    Health,
+    Sanity,
+    Hunger
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    public string name;
+    public string cardName;
     public string description;
 
     public Sprite sprite;
 
     [Header("Effects")]
-    public short deltaResource;
-    public ResourceType resourceType;
+    public List<short> deltaResource;
+    public List<ResourceType> resourceType;
 
     public string startingFunction;
     public string ExternalFunction;

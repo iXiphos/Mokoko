@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardDisplay : MonoBehaviour
+public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public Card card;
     private CardManager CM;
+    private GameObject Characters;
+    private Survivor target;
+    private Canvas mainCanvas;
+    private PartyManager PM;
 
     void Start()
     {
@@ -19,15 +24,27 @@ public class CardDisplay : MonoBehaviour
             Invoke(card.startingFunction, 0);
         }
 
-        CM = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager> ();
+        if(card.resourceType.Count != card.deltaResource.Count)
+        {
+            Debug.LogError(card.cardName +  ": Card MUST have the same amount of types and deltas");
+        }
+
+        target = null;
+        mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
+        Characters = GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").gameObject;
+        CM = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>();
     }
     
     public void ActivateCard()
     {
         //Card Starting Effects
-        if (card.resourceType != ResourceType.NULL || card.deltaResource != 0)
+        for(int i = 0; i < card.resourceType.Count; i++)
         {
-            SetResource(card.resourceType, card.deltaResource);
+            if (card.resourceType[i] != ResourceType.NULL || card.deltaResource[i] != 0)
+            {
+                SetResource(card.resourceType[i], card.deltaResource[i]);
+            }
         }
 
 
@@ -35,15 +52,22 @@ public class CardDisplay : MonoBehaviour
         {
             Invoke(card.ExternalFunction, 0);
         }
-
-        CM.RemoveFromHand(this.gameObject);
     }
 
     void SetResource(ResourceType type, int amount)
     {
         switch(type)
         {
-            case ResourceType.Food:
+            case ResourceType.Health:
+                target.Health = amount;
+                break;
+
+            case ResourceType.Sanity:
+                target.Sanity = amount;
+                break;
+
+            case ResourceType.Hunger:
+                target.Hunger = amount;
                 break;
         }
     }
@@ -62,8 +86,79 @@ public class CardDisplay : MonoBehaviour
         }
     }
 
-    public void OnDrag()
+    public void OnDrag(PointerEventData eventData)
     {
-        
+        this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        CM.draggingCard = this.gameObject;
+        for (int i = 0; i < PM.party.Count; i++)
+        {
+            Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = true;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        CM.draggingCard = null;
+        for (int i = 0; i < PM.party.Count; i++)
+        {
+            float distanceBetweenElements = Vector2.Distance(this.GetComponent<RectTransform>().position, Characters.transform.GetChild(i).GetComponent<RectTransform>().position);
+            if (distanceBetweenElements <= 0.2f)
+            {
+                target = PM.party[i];
+                ActivateCard();
+                Debug.Log("Card Targeted: " + Characters.transform.GetChild(i).name);
+                CM.RemoveFromHand(this.gameObject);
+                Destroy(this.gameObject);
+            }
+
+        }
+
+        for (int i = 0; i < PM.party.Count; i++)
+        {
+            if (Characters.transform.Find("Character" + PM.party[i].id).gameObject != null)
+            {
+                Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = false;
+            }
+        }
+    }
+
+    //Unique Functions ---------------------------------------------------------------
+
+    public void Blessing()
+    {
+        target.hunterSkill += 2;
+        target.medicSkill += 2;
+        target.forgerSkill += 2;
+        target.navigatorSkill += 2;
+        target.chiefSkill += 2;
+        target.mysticSkill += 2;
+    }
+
+    public void NobleSacrifice()
+    {
+        target.Health = 0;
+        Survivor person = PM.party[0];
+
+        person.hunterSkill += 3;
+        person.medicSkill += 3;
+        person.forgerSkill += 3;
+        person.navigatorSkill += 3;
+        person.chiefSkill += 3;
+        person.mysticSkill += 3;
+    }
+
+    public void Panecea()
+    {
+        foreach(GameObject card in CM.hand)
+        {
+            if(card.GetComponent<Card>().name == "Illness" || card.GetComponent<Card>().name == "Infection")
+            {
+                CM.RemoveFromHand(card);
+            }
+        }
     }
 }

@@ -20,6 +20,15 @@ public class PartyManager : MonoBehaviour
     private bool firstTimeUpgrading;
     public int upgradePoints;
 
+    [Header("Effects")]
+    public List<Card> hunterDeck;
+    public List<Card> medicDeck;
+    public List<Card> chefDeck;
+    public List<Card> navigatorDeck;
+    public List<Card> foragerDeck;
+    public List<Card> mysticDeck;
+
+
     void Start()
     {
         party = new List<Survivor>(PARTY_SIZE);
