@@ -42,20 +42,27 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     
     public void ActivateCard()
     {
+        if (card.bonusAmount == 1) CM.BoostNextCard(card.bonusAmount);
+        if (card.bonusAmount == 2)
+        {
+            for (int i = 0; i < CM.hand.Count; i++) CM.hand[i].GetComponent<CardDisplay>().card.bonusAmount++;
+        }
         //Card Starting Effects
-        for(int i = 0; i < card.resourceType.Count; i++)
+        for (int i = 0; i < card.resourceType.Count; i++)
         {
             if (card.resourceType[i] != ResourceType.NULL || card.deltaResource[i] != 0)
             {
                 SetResource(card.resourceType[i], card.deltaResource[i] + CM.enhance_card);
-                if (CM.enhance_card > 0)
-                {
-                    CM.enhance_card = 0;
-                }
             }
+
         }
 
-        if (card.bonusAmount > 0) CM.BoostNextCard(card.bonusAmount);
+        if (CM.enhance_card > 0 && card.resourceType.Count > 0)
+        {
+            CM.enhance_card = 0;
+        }
+
+
 
         if (card.ExternalFunction != string.Empty)
         {
