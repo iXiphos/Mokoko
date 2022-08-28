@@ -15,7 +15,9 @@ MonoBehaviour:
   cardName: Infection
   description: ' ''Infection'' causes character to -1 Sanity for every Health loss'
   sprite: {fileID: 21300000, guid: 9e4989f4877c7224284cdbd732eaf6ef, type: 3}
-  deltaResource: 
-  resourceType: 
+  deltaResource: fcff
+  resourceType: 01000000
+  bonusAmount: 0
   startingFunction: 
   ExternalFunction: 
+  eventDescription: 

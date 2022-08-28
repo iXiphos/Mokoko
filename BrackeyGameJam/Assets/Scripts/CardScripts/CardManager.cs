@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
@@ -186,6 +187,9 @@ public class CardManager : MonoBehaviour
                 }
             }
         }
+
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "These cards [Illness, Infection, Amplifier] will cause effects while they're in hand.";
+
     }
 
     public void Infection(int amount)
@@ -194,6 +198,8 @@ public class CardManager : MonoBehaviour
         {
             person.Sanity = -amount;
         }
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "These cards [Illness, Infection, Amplifier] will cause effects while they're in hand.";
+
     }
 
     public void BoostNextCard(int amount)

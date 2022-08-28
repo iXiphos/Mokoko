@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI.Table;
 
@@ -94,6 +95,7 @@ public class Survivor
                 else if (card.GetComponent<CardDisplay>().card.cardName == "Amplifyer")
                 {
                     health -= 1;
+                    GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "These cards [Illness, Infection, Amplifier] will cause effects while they're in hand.";
                 }
             }
 

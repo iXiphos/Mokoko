@@ -17,6 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: baabe87da0f220d4c9beced9131ddc1c, type: 3}
   deltaResource: 0300
   resourceType: 01000000
+  bonusAmount: 0
   startingFunction: 
-  ExternalFunction: 
+  ExternalFunction: Panecea
   eventDescription: ' uses panacea for +1 increase in ''Health'''
