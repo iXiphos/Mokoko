@@ -105,7 +105,7 @@ public class PartyManager : MonoBehaviour
             foreach (Transform child in playerUpgrades.transform)
             {
                 child.GetComponent<Button>().enabled = true;
-                child.GetComponent<Image>().color = Color.white;
+                child.GetComponent<Image>().color *= 5;
             }
         }
 
@@ -145,9 +145,13 @@ public class PartyManager : MonoBehaviour
             foreach (Transform child in playerUpgrades.transform)
             {
                 child.GetComponent<Button>().enabled = false;
-                child.GetComponent<Image>().color = Color.grey;
+                child.GetComponent<Image>().color /= 5;
             }
+
+            firstTimeUpgrading = false;
+
         }
+
 
         Debug.Log("Upgrade points: " + upgradePoints);
 
