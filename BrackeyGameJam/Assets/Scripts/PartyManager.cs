@@ -27,6 +27,7 @@ public class PartyManager : MonoBehaviour
     public List<Card> navigatorDeck;
     public List<Card> foragerDeck;
     public List<Card> mysticDeck;
+    public List<Card> eventDeck;
 
 
     void Start()

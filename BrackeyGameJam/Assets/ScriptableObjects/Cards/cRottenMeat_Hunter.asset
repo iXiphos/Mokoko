@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Rotten Meat
   description: Eat 'Rotten Meat' for +2 Hunger and -3 Health
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0770b9d1f2f99f34a8f1df3034a517a3, type: 3}
   deltaResource: 0200fdff
   resourceType: 0300000001000000
   startingFunction: 

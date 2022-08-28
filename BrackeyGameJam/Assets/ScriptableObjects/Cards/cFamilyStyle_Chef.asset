@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Family Style
   description: Use 'Family Style' for +1 stats on all cards in hand
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 86c37bd63071a0249b9cf08debfccec1, type: 3}
   deltaResource: 
   resourceType: 
   startingFunction: 

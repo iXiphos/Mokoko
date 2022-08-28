@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -17,6 +18,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         //Updating Card Resources
         this.gameObject.name = "Card[" + card.name + "]";
+        UpdateCardInfo();
         gameObject.transform.GetChild(0).GetComponent<Image>().sprite = card.sprite;
 
         if(card.startingFunction != string.Empty)
@@ -100,6 +102,12 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         }
     }
 
+    public void UpdateCardInfo()
+    {
+        gameObject.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = card.cardName;
+        gameObject.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = card.description;
+    }
+
     public void OnEndDrag(PointerEventData eventData)
     {
         CM.draggingCard = null;
@@ -155,7 +163,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         foreach(GameObject card in CM.hand)
         {
-            if(card.GetComponent<Card>().name == "Illness" || card.GetComponent<Card>().name == "Infection")
+            if(card.GetComponent<CardDisplay>().card.name == "Illness" || card.GetComponent<CardDisplay>().card.name == "Infection")
             {
                 CM.RemoveFromHand(card);
             }

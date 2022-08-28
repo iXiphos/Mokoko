@@ -45,6 +45,7 @@ public class MapScript : MonoBehaviour
             {
                 MapNode theNode = child.GetComponent<MapNode>();
                 child.GetComponent<Button>().enabled = false;
+                child.GetComponent<RectTransform>().localScale = new Vector2(1f, 1f);
                 child.GetComponent<Image>().color = Color.black;
 
                 if (theNode.level == currentLevel)
@@ -53,6 +54,7 @@ public class MapScript : MonoBehaviour
                     foreach (GameObject parent in theNode.parents)
                     {
                         child.GetComponent<Button>().enabled = true;
+                        child.GetComponent<RectTransform>().localScale = new Vector2(1.5f, 1.5f);
                         child.GetComponent<Image>().color = Color.white;
                     }
                 }

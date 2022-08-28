@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Exorcism
   description: Use 'Exorcism' for +3 Sanity
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0ce41e12ee1cfd147b4ecfcc337db1ab, type: 3}
   deltaResource: 0300
   resourceType: 02000000
   startingFunction: 

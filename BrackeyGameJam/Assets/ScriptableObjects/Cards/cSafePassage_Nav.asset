@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Safe Passage
   description: Use 'Safe Passage' for -1 Hunger, +2 Sanity
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 62e8834df0a5ffa4cade54e1063b1462, type: 3}
   deltaResource: ffff0200
   resourceType: 0300000002000000
   startingFunction: 
