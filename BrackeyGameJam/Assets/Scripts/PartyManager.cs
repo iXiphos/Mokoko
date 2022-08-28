@@ -93,7 +93,6 @@ public class PartyManager : MonoBehaviour
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {
-
         string[] allInput = input.Split(',');
         int characterNum = int.Parse(allInput[1]);
         int amount = int.Parse(allInput[2]);
@@ -108,6 +107,29 @@ public class PartyManager : MonoBehaviour
                 child.GetComponent<Image>().color *= 5;
             }
         }
+
+        switch (int.Parse(allInput[0]))
+        {
+            case (0):
+                if (party[characterNum].hunterSkill > 4) return; 
+                break;
+            case (1):
+                if (party[characterNum].medicSkill > 4) return;
+                break;
+            case (2):
+                if (party[characterNum].chiefSkill > 4) return;
+                break;
+            case (3):
+                if (party[characterNum].navigatorSkill > 4) return;
+                break;
+            case (4):
+                if (party[characterNum].forgerSkill > 4) return;
+                break;
+            case (5):
+                if (party[characterNum].mysticSkill > 4) return;
+                break;
+        }
+
 
         upgradePoints--;
 

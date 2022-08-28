@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0300000001000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats superfoods for + increase in ''Hunger'' and +2 increase
+    in ''Health'''

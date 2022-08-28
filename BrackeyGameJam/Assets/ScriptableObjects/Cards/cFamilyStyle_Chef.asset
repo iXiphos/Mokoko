@@ -17,5 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 86c37bd63071a0249b9cf08debfccec1, type: 3}
   deltaResource: 
   resourceType: 
-  startingFunction: 
+  bonusAmount: 0
+  startingFunction: 2
   ExternalFunction: 
+  eventDescription: ' eats family style to enhace all the cards in their hand '

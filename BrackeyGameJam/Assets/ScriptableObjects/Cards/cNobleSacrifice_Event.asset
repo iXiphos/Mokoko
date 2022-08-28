@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 
   startingFunction: 
   ExternalFunction: NobleSacrifice
+  eventDescription: ', thank you for your service...'

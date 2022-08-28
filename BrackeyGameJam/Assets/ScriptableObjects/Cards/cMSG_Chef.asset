@@ -17,5 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 86c37bd63071a0249b9cf08debfccec1, type: 3}
   deltaResource: 
   resourceType: 
-  startingFunction: 
+  bonusAmount: 0
+  startingFunction: 1
   ExternalFunction: 
+  eventDescription: ' uses MSG to enhance their next card'

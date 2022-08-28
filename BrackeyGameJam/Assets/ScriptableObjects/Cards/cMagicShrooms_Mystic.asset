@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0200000003000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats a Mysterious Mushroom for +2 increase in ''Sanity'' and
+    a +1 incease in ''Hunger'''

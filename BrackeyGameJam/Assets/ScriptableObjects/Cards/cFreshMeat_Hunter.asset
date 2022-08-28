@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 03000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats fresh meat for +2 increase in ''Hunger'''
