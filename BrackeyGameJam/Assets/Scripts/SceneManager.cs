@@ -36,6 +36,7 @@ public class SceneManager : MonoBehaviour
     public void SpawnNextScene(LevelTypes levelType, string stopName = "")
     {
         GameObject newLevel = pitStops[0];
+        gameObject.GetComponent<PartyManager>().upgradePoints++;
         System.Random rand = new System.Random();
         switch (levelType)
         {

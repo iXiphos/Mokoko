@@ -59,16 +59,36 @@ public class PartyManager : MonoBehaviour
 
     public void OpenUpgradeMenu(bool open)
     {
-        upgradePoints += 2;
+        //upgradePoints += 2;
+        if(open)
+        {
+            if(upgradePoints <= 0)
+            {
+                return;
+            }
+        }
+
         upgradeScreen.SetActive(open);
     }
 
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {
+
         string[] allInput = input.Split(',');
         int characterNum = int.Parse(allInput[1]);
         int amount = int.Parse(allInput[2]);
+
+        GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
+
+        if (!firstTimeUpgrading)
+        {
+            foreach (Transform child in playerUpgrades.transform)
+            {
+                child.GetComponent<Button>().enabled = true;
+                child.GetComponent<Image>().color = Color.white;
+            }
+        }
 
         upgradePoints--;
 
@@ -99,8 +119,6 @@ public class PartyManager : MonoBehaviour
                 break;
         }
         
-        GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
-        
         playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshProUGUI>().text = (int.Parse(playerUpgrades.transform.GetChild(int.Parse(allInput[0])).GetChild(0).GetComponent<TextMeshProUGUI>().text) + 1).ToString();
         
         if (firstTimeUpgrading)
@@ -110,6 +128,13 @@ public class PartyManager : MonoBehaviour
                 child.GetComponent<Button>().enabled = false;
                 child.GetComponent<Image>().color = Color.grey;
             }
+        }
+
+        Debug.Log("Upgrade points: " + upgradePoints);
+
+        if(upgradePoints <= 0)
+        {
+            OpenUpgradeMenu(false);
         }
 
         

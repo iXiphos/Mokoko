@@ -16,9 +16,8 @@ public class GroupSpriteManager : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
-        isMoving = false;
+        isMoving = true;
         PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
-        InvokeRepeating("UpdatePos", 0, 0.1f);
     }
 
     private void Update()
@@ -36,7 +35,7 @@ public class GroupSpriteManager : MonoBehaviour
                 }
             }
         }
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(mainCamera.transform.position.x, 0, 0), 0.1f);
+        gameObject.transform.position = new Vector3(mainCamera.transform.position.x, 0, 0);
     }
 
     public void SetIsMoving(bool value)
@@ -47,7 +46,18 @@ public class GroupSpriteManager : MonoBehaviour
             if (value)
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allMovingSprites[PM.party[i].id];
             else
+            {
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allStationarySprites[PM.party[i].id];
+                foreach (Transform child in this.transform)
+                {
+                    if (child.name != "Shadow")
+                    {
+                        child.transform.position = new Vector3(child.transform.position.x, 0.58f, 0);
+                    }
+
+                }
+            }
+
         }
     }
 }

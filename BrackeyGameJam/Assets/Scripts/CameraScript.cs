@@ -23,6 +23,11 @@ public class CameraScript : MonoBehaviour
         
     }
 
+    public void SetMovingOnSprites(int value)
+    {
+        GameObject.Find("PlayerSprites").GetComponent<GroupSpriteManager>().SetIsMoving(value == 0 ? true : false);
+    }
+
     public void TransitioningScene(int into)
     {
         Canvas.transform.Find("MapView").gameObject.SetActive(!Convert.ToBoolean(into));
