@@ -104,15 +104,6 @@ public class PartyManager : MonoBehaviour
 
         GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
 
-        if (!firstTimeUpgrading)
-        {
-            foreach (Transform child in playerUpgrades.transform)
-            {
-                child.GetComponent<Button>().enabled = true;
-                child.GetComponent<Image>().color *= 5;
-            }
-        }
-
         switch (int.Parse(allInput[0]))
         {
             case (0):
@@ -175,8 +166,21 @@ public class PartyManager : MonoBehaviour
                 child.GetComponent<Image>().color /= 5;
             }
 
-            firstTimeUpgrading = false;
-
+            if(upgradePoints == 0)
+            {
+                firstTimeUpgrading = false;
+                for (int i = 0; i < upgradeScreen.transform.childCount; i++)
+                {
+                    if (upgradeScreen.transform.GetChild(i).name != "Text")
+                    {
+                        foreach (Transform child in upgradeScreen.transform.GetChild(i).transform)
+                        {
+                            child.GetComponent<Button>().enabled = true;
+                            child.GetComponent<Image>().color *= 5;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -185,8 +189,9 @@ public class PartyManager : MonoBehaviour
         if(upgradePoints <= 0)
         {
             OpenUpgradeMenu(false);
+            GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("UpgradeUI").gameObject.SetActive(false);
         }
 
-        
+
     }
 }

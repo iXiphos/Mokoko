@@ -51,7 +51,6 @@ public class SceneManager : MonoBehaviour
         }
 
         GameObject newLevel = pitStops[0];
-        gameObject.GetComponent<PartyManager>().upgradePoints++;
         System.Random rand = new System.Random();
         switch (levelType)
         {
@@ -68,6 +67,7 @@ public class SceneManager : MonoBehaviour
                 {
                     newLevel = pitStops[rand.Next(0, pitStops.Length)];
                 }
+                gameObject.GetComponent<PartyManager>().upgradePoints++;
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
                 break;
 
