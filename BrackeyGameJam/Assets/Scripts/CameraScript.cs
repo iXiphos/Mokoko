@@ -35,7 +35,7 @@ public class CameraScript : MonoBehaviour
 
         if(into != 0)
         {
-            //Out of scene
+            //Into scene, camera is just entering the map
             GameObject.Find("CardManager").GetComponent<CardManager>().generateDeck();
             List<GameObject> hand = GameObject.Find("CardManager").GetComponent<CardManager>().hand;
             for (int i = hand.Count; i < 6; i++) GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(1);
@@ -53,7 +53,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            //Into Scene
+            //Out of the scene, when camera is fully out of the map
             Canvas.transform.Find("MapView").GetChild(0).GetChild(0).GetComponent<MapScript>().UpdateMap();
         }
     }
