@@ -20,4 +20,4 @@ MonoBehaviour:
   bonusAmount: 0
   startingFunction: 
   ExternalFunction: Gamble
-  eventDescription: ' loses 3 ''Health'' in exchange for purging a card in your hand'
+  eventDescription: ' loses 1 ''Health'' in exchange for purging a card in your hand'

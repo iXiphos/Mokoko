@@ -102,7 +102,16 @@ public class PartyManager : MonoBehaviour
         int characterNum = int.Parse(allInput[1]);
         int amount = int.Parse(allInput[2]);
 
-        characterNum = Mathf.Clamp(characterNum, 0, party.Count);
+        if (characterNum > party.Count)
+        {
+            for(int i = 0; i < party.Count; i++)
+            {
+                if (party[i].id == characterNum)
+                {
+                    characterNum = i;
+                }
+            }
+        }
 
         GameObject playerUpgrades = upgradeScreen.transform.Find("Player" + characterNum + " Upgrades").gameObject;
 

@@ -72,10 +72,6 @@ public class SceneManager : MonoBehaviour
                 gameObject.GetComponent<PartyManager>().upgradePoints++;
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
 
-                foreach(Transform child in Cards.transform)
-                {
-                    child.gameObject.SetActive(true);
-                }
                 break;
 
             case LevelTypes.Reststop:
@@ -90,10 +86,6 @@ public class SceneManager : MonoBehaviour
                 else
                 {
                     newLevel = pitStops[rand.Next(0, restStops.Length)];
-                }
-                foreach (Transform child in Cards.transform)
-                {
-                    child.gameObject.SetActive(false);
                 }
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(true);
                 break;
