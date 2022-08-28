@@ -81,6 +81,13 @@ public class PartyManager : MonoBehaviour
         GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("UpgradeUI").gameObject.SetActive(false);
     }
 
+    public void Death(Survivor victim)
+    {
+        upgradeScreen.transform.Find("Player" + victim.id + " Upgrades").gameObject.SetActive(false);
+        //Destroy(GameObject.Find("MainCamera").transform.GetChild(0).Find("Player" + victim.id).gameObject);
+        party.Remove(victim);
+    }
+
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {

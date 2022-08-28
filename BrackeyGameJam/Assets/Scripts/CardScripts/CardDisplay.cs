@@ -104,21 +104,15 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (SM.currentType != LevelTypes.Reststop)
-        {
-            this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
-        }
+        this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(SM.currentType != LevelTypes.Reststop)
+        CM.draggingCard = this.gameObject;
+        for (int i = 0; i < PM.party.Count; i++)
         {
-            CM.draggingCard = this.gameObject;
-            for (int i = 0; i < PM.party.Count; i++)
-            {
-                Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = true;
-            }
+            Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = true;
         }
     }
 
@@ -130,12 +124,6 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (SM.currentType != LevelTypes.Reststop)
-        {
-            return;
-        }
-        
-        
         CM.draggingCard = null;
         for (int i = 0; i < PM.party.Count; i++)
         {

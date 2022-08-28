@@ -59,6 +59,8 @@ public class Survivor
             if (hunger <= 0)
             {
                 Debug.Log("--[" + this.name + "] has DIED from hunger. L");
+                GameObject.Find("GameManager").GetComponent<PartyManager>().Death(this);
+                MonoBehaviour.Destroy(GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).gameObject);
             }
 
         }
@@ -94,7 +96,7 @@ public class Survivor
             if(health <= 0)
             {
                 Debug.Log("--[" + this.name + "] has DIED from health. L");
-                GameObject.Find("GameManager").GetComponent<PartyManager>().party.Remove(this);
+                GameObject.Find("GameManager").GetComponent<PartyManager>().Death(this);
                 MonoBehaviour.Destroy(GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).gameObject);
             }
         }
