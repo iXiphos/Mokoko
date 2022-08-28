@@ -49,6 +49,8 @@ public class PartyManager : MonoBehaviour
         }
 
         Debug.Log("Party size is:" + party.Count);
+
+        OpenUpgradeMenu(true);
     }
 
     // Update is called once per frame
@@ -69,6 +71,23 @@ public class PartyManager : MonoBehaviour
         }
 
         upgradeScreen.SetActive(open);
+    }
+
+    public void Rest()
+    {
+        foreach(Survivor sur in party)
+        {
+            sur.Health = 2;
+        }
+
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("UpgradeUI").gameObject.SetActive(false);
+    }
+
+    public void Death(Survivor victim)
+    {
+        upgradeScreen.transform.Find("Player" + victim.id + " Upgrades").gameObject.SetActive(false);
+        Destroy(GameObject.Find("Main Camera").transform.GetChild(0).Find("Player" + victim.id).gameObject);
+        party.Remove(victim);
     }
 
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount

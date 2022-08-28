@@ -23,7 +23,7 @@ public class GroupSpriteManager : MonoBehaviour
     private void Update()
     {
         float newY = 0;
-        float baseOffset = 0.625f;
+        float baseOffset = 0.838f;
         if (isMoving)
         {
             foreach (Transform child in this.transform)
@@ -35,7 +35,7 @@ public class GroupSpriteManager : MonoBehaviour
                 }
             }
         }
-        gameObject.transform.position = new Vector3(mainCamera.transform.position.x, 0, 0);
+        //gameObject.transform.position = new Vector3(mainCamera.transform.position.x, 0, 0);
     }
 
     public void SetIsMoving(bool value)
@@ -44,15 +44,15 @@ public class GroupSpriteManager : MonoBehaviour
         for (int i = 0; i < PM.party.Count; i++)
         {
             if (value)
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allMovingSprites[PM.party[i].id];
+                gameObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allMovingSprites[PM.party[i].id];
             else
             {
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allStationarySprites[PM.party[i].id];
+                gameObject.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allStationarySprites[PM.party[i].id];
                 foreach (Transform child in this.transform)
                 {
                     if (child.name != "Shadow")
                     {
-                        child.transform.position = new Vector3(child.transform.position.x, 0.58f, 0);
+                        child.transform.position = new Vector3(child.transform.position.x, 0.838f, 0);
                     }
 
                 }

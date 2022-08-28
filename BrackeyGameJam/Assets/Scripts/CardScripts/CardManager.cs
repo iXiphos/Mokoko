@@ -12,6 +12,9 @@ public class CardManager : MonoBehaviour
     public Card tempCard;
     private Canvas mainCanvas;
 
+    [HideInInspector]
+    public int enhance_card;
+
     public int minCardMargin;
     public int maxCardMargin;
     public int totalHorizontalSize = 1000;
@@ -191,6 +194,11 @@ public class CardManager : MonoBehaviour
         {
             person.Sanity = -amount;
         }
+    }
+
+    public void BoostNextCard(int amount)
+    {
+        enhance_card += amount;
     }
 
     private void ShuffleDeck()

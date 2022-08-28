@@ -11,6 +11,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     private CardManager CM;
     private GameObject Characters;
     private Survivor target;
+    private SceneManager SM;
     private Canvas mainCanvas;
     private PartyManager PM;
 
@@ -34,6 +35,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         target = null;
         mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
+        SM = GameObject.Find("GameManager").GetComponent<SceneManager>();
         Characters = GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").gameObject;
         CM = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>();
     }
@@ -45,10 +47,15 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         {
             if (card.resourceType[i] != ResourceType.NULL || card.deltaResource[i] != 0)
             {
-                SetResource(card.resourceType[i], card.deltaResource[i]);
+                SetResource(card.resourceType[i], card.deltaResource[i] + CM.enhance_card);
+                if (CM.enhance_card > 0)
+                {
+                    CM.enhance_card = 0;
+                }
             }
         }
 
+        if (card.bonusAmount > 0) CM.BoostNextCard(card.bonusAmount);
 
         if (card.ExternalFunction != string.Empty)
         {
@@ -65,6 +72,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         //Change to in game text box
         Debug.Log(target.name + card.eventDescription);
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = card.eventDescription;
     }
 
     void SetResource(ResourceType type, int amount)
@@ -174,5 +182,29 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                 return;
             }
         }
+    }
+
+    public void Gamble()
+    {
+        target.Health = -3;
+        if(CM.hand.Count > 0)
+            CM.hand.RemoveAt(0);
+    }
+
+    public void Search()
+    {
+        CM.DrawCard(1);
+    }
+
+    public void Reorginzation()
+    {
+        CM.hand.Clear();
+        CM.DrawCard(6);
+    }
+
+    public void Guide()
+    {
+        target.hunterSkill = -1;
+        target.preventDamage = 2;
     }
 }
