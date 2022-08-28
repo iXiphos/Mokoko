@@ -32,7 +32,8 @@ public class CameraScript : MonoBehaviour
         {
             //Out of scene
             GameObject.Find("CardManager").GetComponent<CardManager>().generateDeck();
-            GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(6);
+            List<GameObject> hand = GameObject.Find("CardManager").GetComponent<CardManager>().hand;
+            for (int i = hand.Count; i < 6; i++) GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(1);
             List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
             for (int i = 0; i < survivors.Count; i++)
             {
