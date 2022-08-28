@@ -44,7 +44,9 @@ public class SceneManager : MonoBehaviour
     {
         currentType = levelType;
 
-        foreach(Survivor sur in gameObject.GetComponent<PartyManager>().party)
+        GameObject Cards = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").Find("Cards").gameObject;
+
+        foreach (Survivor sur in gameObject.GetComponent<PartyManager>().party)
         {
             if (sur.preventDamage > 0)
                 sur.preventDamage--;
@@ -69,7 +71,11 @@ public class SceneManager : MonoBehaviour
                 }
                 gameObject.GetComponent<PartyManager>().upgradePoints++;
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
-                //GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").Find("Cards").GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("MainCanvas").transform.Find("CardManager").Find("Cards").GetComponent<RectTransform>().anchoredPosition.y, -27);
+
+                foreach(Transform child in Cards.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
                 break;
 
             case LevelTypes.Reststop:
@@ -85,10 +91,11 @@ public class SceneManager : MonoBehaviour
                 {
                     newLevel = pitStops[rand.Next(0, restStops.Length)];
                 }
-                //GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").Find("Cards").GetComponent<RectTransform>().anchoredPosition 
+                foreach (Transform child in Cards.transform)
+                {
+                    child.gameObject.SetActive(false);
+                }
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(true);
-                GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ASDASD";
-
                 break;
 
             case LevelTypes.Treasurestop:

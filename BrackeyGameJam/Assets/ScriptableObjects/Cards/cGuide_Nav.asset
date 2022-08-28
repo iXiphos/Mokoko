@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cGuide_Nav
   m_EditorClassIdentifier: 
   cardName: Guide
-  description: 'Use ''Guide'' to Avoid damage for rest of stop '
+  description: 'Use ''Guide'' to Avoid damage for the next  stop '
   sprite: {fileID: 21300000, guid: 62e8834df0a5ffa4cade54e1063b1462, type: 3}
   deltaResource: 0100
   resourceType: 03000000

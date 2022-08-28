@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class CameraScript : MonoBehaviour
             GameObject.Find("CardManager").GetComponent<CardManager>().generateDeck();
             List<GameObject> hand = GameObject.Find("CardManager").GetComponent<CardManager>().hand;
             for (int i = hand.Count; i < 6; i++) GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(1);
+
             List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
 
             if(GameObject.Find("GameManager").GetComponent<SceneManager>().currentType != LevelTypes.Reststop && startLock)

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: cAmplifier_Event
   m_EditorClassIdentifier: 
   cardName: Amplifier
-  description: ' ''Illness'' causes characters to an extra -1 Health per Health loss'
+  description: ' ''Illness'' causes characters to an extra -1 Health per Health loss.
+    -2 to Hunger and Sanity when played.'
   sprite: {fileID: 21300000, guid: 9e4989f4877c7224284cdbd732eaf6ef, type: 3}
   deltaResource: fefffeff
   resourceType: 0300000002000000
