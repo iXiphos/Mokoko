@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 03000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats a full meal for +3 increase in ''Hunger'''

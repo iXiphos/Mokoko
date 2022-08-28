@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 010000000300000002000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' has a feast for +1 increase in ''Health'', a +1 increase in
+    ''Hunger'', and -1 decrease in ''Sanity'''

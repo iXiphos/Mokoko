@@ -20,3 +20,4 @@ MonoBehaviour:
   resourceType: 010000000300000002000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' has recieved a blessing!'

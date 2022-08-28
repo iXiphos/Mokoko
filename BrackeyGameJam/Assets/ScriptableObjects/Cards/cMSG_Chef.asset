@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' uses MSG to enhance their next card'

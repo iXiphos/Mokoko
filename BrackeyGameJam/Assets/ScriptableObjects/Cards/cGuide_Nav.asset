@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 03000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' has a guide to lead them to avoid damage for the rest of the
+    turn in exchange for -1 ''Hunger'''

@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0100000002000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' uses painkillers for +2 increase in ''Health'' and -1 decrease
+    in ''Sanity'''
