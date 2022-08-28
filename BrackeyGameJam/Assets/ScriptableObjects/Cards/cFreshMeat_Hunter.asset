@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fresh Meat
   description: Eat 'Fresh Meat' for +2 Hunger
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0770b9d1f2f99f34a8f1df3034a517a3, type: 3}
   deltaResource: 0200
   resourceType: 03000000
   startingFunction: 

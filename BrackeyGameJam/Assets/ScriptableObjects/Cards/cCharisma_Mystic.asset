@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Charisma
   description: 'Use ''Charisma'' for +1 Sanity '
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0ce41e12ee1cfd147b4ecfcc337db1ab, type: 3}
   deltaResource: 0100
   resourceType: 02000000
   startingFunction: 

@@ -104,7 +104,7 @@ public class CardManager : MonoBehaviour
                     Vector2 newPos = new Vector2(Math.Clamp((totalHorizontalSize / hand.Count()), minCardMargin, maxCardMargin) * i, 0);
                     if (hand[i] == activeCard)
                     {
-                        newPos.y += 400;
+                        newPos.y += 500;
                         newSize = new Vector2(1.25f, 1.25f);
                     }
                     hand[i].GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(hand[i].GetComponent<RectTransform>().anchoredPosition, newPos, 0.05f);
@@ -117,6 +117,11 @@ public class CardManager : MonoBehaviour
                 }
 
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Home))
+        {
+            DrawCard(1);
         }
     }
 
@@ -138,13 +143,16 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard(ushort amountOfTimes)
     {
-        for(int i = 0; i < amountOfTimes; i++)
+        if(deck.Count > 0)
         {
-            GameObject card = Instantiate(cardObject, this.transform.GetChild(0));
-            hand.Add(card);
-            card.GetComponent<RectTransform>().Translate(Vector2.down * 5);
-            card.GetComponent<CardDisplay>().card = deck[0];
-            deck.RemoveAt(0);
+            for (int i = 0; i < amountOfTimes; i++)
+            {
+                GameObject card = Instantiate(cardObject, this.transform.GetChild(0));
+                hand.Add(card);
+                card.GetComponent<RectTransform>().Translate(Vector2.down * 5);
+                card.GetComponent<CardDisplay>().card = deck[0];
+                deck.RemoveAt(0);
+            }
         }
     }
 
@@ -165,7 +173,7 @@ public class CardManager : MonoBehaviour
     {
         foreach(GameObject card in hand)
         {
-            if(card.GetComponent<Card>().cardName == "Illness")
+            if(card.GetComponent<CardDisplay>().card.cardName == "Illness")
             {
                 foreach(Survivor person in PM.party)
                 {

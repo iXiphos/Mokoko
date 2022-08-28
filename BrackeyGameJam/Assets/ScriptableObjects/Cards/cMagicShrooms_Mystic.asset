@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mysterious Mushroom
   description: Use 'Mysterious Mushroom' for +2 Sanity and +1 Hunger
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0ce41e12ee1cfd147b4ecfcc337db1ab, type: 3}
   deltaResource: 02000100
   resourceType: 0200000003000000
   startingFunction: 

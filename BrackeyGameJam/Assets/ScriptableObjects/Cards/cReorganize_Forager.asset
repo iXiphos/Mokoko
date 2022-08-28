@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Reorganization
   description: Use 'Reoganization' to replace current hand
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 866f6907fe21cc3488142cd06b487ee7, type: 3}
   deltaResource: 
   resourceType: 
   startingFunction: 

@@ -68,16 +68,15 @@ public class Survivor
         set
         {
             health += value;
-            Mathf.Clamp(health, 0, maxHealth);
 
             //Infection
             foreach(GameObject card in GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>().hand)
             {
-                if(card.GetComponent<Card>().cardName == "Infection")
+                if(card.GetComponent<CardDisplay>().card.cardName == "Infection")
                 {
                     GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>().Infection(value);
                 }
-                else if (card.GetComponent<Card>().cardName == "Amplifyer")
+                else if (card.GetComponent<CardDisplay>().card.cardName == "Amplifyer")
                 {
                     health-=1;
                 }

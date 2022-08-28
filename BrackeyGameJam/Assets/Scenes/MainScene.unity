@@ -6829,9 +6829,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &823530002
 MonoBehaviour:
@@ -7638,7 +7638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1233.5999}
+  m_AnchoredPosition: {x: 0, y: 1233.6003}
   m_SizeDelta: {x: 0, y: 3126.4}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &918264450
@@ -9345,8 +9345,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1313422437}
   m_HandleRect: {fileID: 1313422436}
   m_Direction: 2
-  m_Value: 0.000000098954544
-  m_Size: 0.6054238
+  m_Value: -0.00000039581818
+  m_Size: 0.5178297
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9407,7 +9407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1118970048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11255,6 +11255,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 951daa27307eb6242ba7e5df88aed70f, type: 2}
   - {fileID: 11400000, guid: 7da99addc53e6d744840e7ee3fe41260, type: 2}
   - {fileID: 11400000, guid: fc74fd605cd10a2409c92dcc841a1ffd, type: 2}
+  eventDeck: []
 --- !u!1 &1484995298
 GameObject:
   m_ObjectHideFlags: 0
@@ -11435,7 +11436,7 @@ MonoBehaviour:
   totalHorizontalSize: 2000
   activeCard: {fileID: 0}
   draggingCard: {fileID: 0}
-  dragCardPos: {x: 0, y: 0}
+  hand: []
 --- !u!1 &1524871796
 GameObject:
   m_ObjectHideFlags: 0
