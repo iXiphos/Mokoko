@@ -12,7 +12,13 @@ public class MainMenuScript : MonoBehaviour
 
     IEnumerator TransitionSequence()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0);
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    public void ReturnToMain()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+
     }
 }

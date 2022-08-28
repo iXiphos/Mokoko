@@ -88,6 +88,11 @@ public class PartyManager : MonoBehaviour
         upgradeScreen.transform.Find("Player" + victim.id + " Upgrades").gameObject.SetActive(false);
         Destroy(GameObject.Find("Main Camera").transform.GetChild(0).Find("Player" + victim.id).gameObject);
         party.Remove(victim);
+
+        if(party.Count <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        }
     }
 
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount

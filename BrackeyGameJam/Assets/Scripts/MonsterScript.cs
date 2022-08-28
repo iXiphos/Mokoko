@@ -33,19 +33,31 @@ public class MonsterScript : MonoBehaviour
         if(sanityValue < 10)
         {
             UnityEngine.Color thisColor = gameObject.GetComponent<SpriteRenderer>().color;
-            gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 0.2f);
+            int random = rand.Next(0, 2);
+            gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            if(random == 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 0);
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 0.05f);
+            }
+            gameObject.transform.position = new Vector3(ogPosition.x + rand.Next(-10, 10), gameObject.transform.position.y, gameObject.transform.position.z);
         }
 
 
         if (sanityValue < 5)
         {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             UnityEngine.Color thisColor = gameObject.GetComponent<SpriteRenderer>().color;
-            gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 0.5f);
+            gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 0.4f);
         }
 
 
         if (sanityValue < 3)
         {
+            gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             gameObject.transform.position = new Vector3(ogPosition.x + rand.Next(-2, 2), gameObject.transform.position.y, gameObject.transform.position.z);
             UnityEngine.Color thisColor = gameObject.GetComponent<SpriteRenderer>().color;
             gameObject.GetComponent<SpriteRenderer>().color = new UnityEngine.Color(thisColor.r, thisColor.g, thisColor.b, 1.0f);
