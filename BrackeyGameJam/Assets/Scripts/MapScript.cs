@@ -24,14 +24,14 @@ public class MapScript : MonoBehaviour
     // Variables for handling weighted numbers
     public int wieghtPrecentIncrease = 10;
     public List<int> baseWeights;
-    List<int> weights;
+    public List<int> weights;
 
     private void Start()
     {
         weights = new List<int>();
         currentLevel = 0;
-        GenerateMap();
         resetWeights();
+        GenerateMap();
     }
 
     public void UpdateMap()
