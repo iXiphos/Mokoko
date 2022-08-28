@@ -18,6 +18,10 @@ public class MapNode : MonoBehaviour
 
     public void UpdateNextSceneType()
     {
+        if(level >= 12)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+        }
         SceneManager SM = GameObject.Find("GameManager").GetComponent<SceneManager>();
         SM.EnterScene();
         SM.SpawnNextScene(this.nodeType);
