@@ -46,6 +46,9 @@ public class CameraScript : MonoBehaviour
                 survivors[i].Hunger = amount_to_lose_on_round_end;
             }
 
+            //Change to print in text box
+            Debug.Log("All survivors take " + amount_to_lose_on_round_end + "'Hunger' and 'Sanity' damage");
+
             if(hand.Count > 0)
             {
                 CM.CheckForIllness();

@@ -25,4 +25,6 @@ public class Card : ScriptableObject
     public string startingFunction;
     public string ExternalFunction;
 
+    public string eventDescription;     //should be written so that the targets name starts the sentance
+
 }

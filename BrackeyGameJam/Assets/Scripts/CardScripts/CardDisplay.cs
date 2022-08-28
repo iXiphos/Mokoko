@@ -54,6 +54,17 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         {
             Invoke(card.ExternalFunction, 0);
         }
+
+        if(card.eventDescription != string.Empty)
+        {
+            Invoke("ShowEventDiscription", 1);
+        }
+    }
+
+    private void ShowEventDiscription()
+    {
+        //Change to in game text box
+        Debug.Log(target.name + card.eventDescription);
     }
 
     void SetResource(ResourceType type, int amount)
