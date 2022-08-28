@@ -18,7 +18,7 @@ public class MapNode : MonoBehaviour
 
     public void UpdateNextSceneType()
     {
-        if(level >= 12)
+        if(level >= 11)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(3);
         }
