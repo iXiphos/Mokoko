@@ -9,6 +9,8 @@ public class Survivor
     public Sprite sprite;
     public int id;
 
+    public int preventDamage = 0;
+
     [Header("Stats")]
     private int health;
     private int hunger;
@@ -76,6 +78,9 @@ public class Survivor
         }
         set
         {
+            if (preventDamage == 1)
+                return;
+
             health += value;
             health = Mathf.Clamp(health, 0, maxHealth);
 

@@ -178,4 +178,28 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             }
         }
     }
+
+    public void Gamble()
+    {
+        target.Health = -3;
+        if(CM.hand.Count > 0)
+            CM.hand.RemoveAt(0);
+    }
+
+    public void Search()
+    {
+        CM.DrawCard(1);
+    }
+
+    public void Reorginzation()
+    {
+        CM.hand.Clear();
+        CM.DrawCard(6);
+    }
+
+    public void Guide()
+    {
+        target.hunterSkill = -1;
+        target.preventDamage = 2;
+    }
 }

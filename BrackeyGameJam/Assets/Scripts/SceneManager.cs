@@ -43,6 +43,13 @@ public class SceneManager : MonoBehaviour
     public void SpawnNextScene(LevelTypes levelType, string stopName = "")
     {
         currentType = levelType;
+
+        foreach(Survivor sur in gameObject.GetComponent<PartyManager>().party)
+        {
+            if (sur.preventDamage > 0)
+                sur.preventDamage--;
+        }
+
         GameObject newLevel = pitStops[0];
         gameObject.GetComponent<PartyManager>().upgradePoints++;
         System.Random rand = new System.Random();
