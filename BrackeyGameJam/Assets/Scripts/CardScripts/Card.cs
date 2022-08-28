@@ -22,6 +22,8 @@ public class Card : ScriptableObject
     public List<short> deltaResource;
     public List<ResourceType> resourceType;
 
+    public int bonusAmount;
+
     public string startingFunction;
     public string ExternalFunction;
 

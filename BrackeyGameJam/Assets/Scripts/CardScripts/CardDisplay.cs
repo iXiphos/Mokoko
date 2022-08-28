@@ -47,10 +47,15 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         {
             if (card.resourceType[i] != ResourceType.NULL || card.deltaResource[i] != 0)
             {
-                SetResource(card.resourceType[i], card.deltaResource[i]);
+                SetResource(card.resourceType[i], card.deltaResource[i] + CM.enhance_card);
+                if (CM.enhance_card > 0)
+                {
+                    CM.enhance_card = 0;
+                }
             }
         }
 
+        if (card.bonusAmount > 0) CM.BoostNextCard(card.bonusAmount);
 
         if (card.ExternalFunction != string.Empty)
         {
