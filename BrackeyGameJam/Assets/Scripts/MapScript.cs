@@ -30,8 +30,8 @@ public class MapScript : MonoBehaviour
     {
         weights = new List<int>();
         currentLevel = 0;
-        resetWeights();
         GenerateMap();
+        resetWeights();
     }
 
     public void UpdateMap()

@@ -27,6 +27,8 @@ public class Survivor
         set
         {
             sanity += value;
+            sanity = Mathf.Clamp(sanity, 0, maxSanity);
+
             Mathf.Clamp(sanity, 0, maxSanity);
             Debug.Log("--[" + this.name + "] has taken " + value + " sanity!" + "Now has " + this.sanity);
             GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateSanity(sanity, maxSanity);
@@ -47,6 +49,9 @@ public class Survivor
         set
         {
             hunger += value;
+            hunger = Mathf.Clamp(hunger, 0, maxHunger);
+
+
             Mathf.Clamp(sanity, 0, maxHunger);
             Debug.Log("--[" + this.name + "] has taken " + value + " hunger! Now has " + this.hunger);
             GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).GetComponent<CharStatsUI>().UpdateHunger(hunger, maxHunger);
@@ -68,6 +73,7 @@ public class Survivor
         set
         {
             health += value;
+            health = Mathf.Clamp(health, 0, maxHealth);
 
             //Infection
             foreach(GameObject card in GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>().hand)
@@ -78,7 +84,7 @@ public class Survivor
                 }
                 else if (card.GetComponent<CardDisplay>().card.cardName == "Amplifyer")
                 {
-                    health-=1;
+                    health -= 1;
                 }
             }
 

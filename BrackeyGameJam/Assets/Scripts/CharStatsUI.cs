@@ -50,7 +50,7 @@ public class CharStatsUI : MonoBehaviour
         amount = amount/maxAmount;
 
         RectTransform rect = gameObject.transform.Find("Health").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
+        float newY = -rect.GetComponent<RectTransform>().sizeDelta.y + (rect.GetComponent<RectTransform>().sizeDelta.y * amount);
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
     }
 
@@ -59,7 +59,7 @@ public class CharStatsUI : MonoBehaviour
         amount = amount / maxAmount;
 
         RectTransform rect = gameObject.transform.Find("Sanity").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
+        float newY = -rect.GetComponent<RectTransform>().sizeDelta.y + (rect.GetComponent<RectTransform>().sizeDelta.y * amount);
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
     }
 
@@ -68,7 +68,7 @@ public class CharStatsUI : MonoBehaviour
         amount = amount / maxAmount;
 
         RectTransform rect = gameObject.transform.Find("Hunger").Find("Circle").Find("HealthFill").GetComponent<RectTransform>();
-        float newY = rect.GetComponent<RectTransform>().sizeDelta.y * -amount;
+        float newY = -rect.GetComponent<RectTransform>().sizeDelta.y + (rect.GetComponent<RectTransform>().sizeDelta.y * amount);
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, newY);
     }
 }

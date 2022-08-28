@@ -30,7 +30,7 @@ public class PartyManager : MonoBehaviour
     public List<Card> eventDeck;
 
 
-    void Start()
+    void Awake()
     {
         party = new List<Survivor>(PARTY_SIZE);
         firstTimeUpgrading = true;

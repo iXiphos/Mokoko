@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     private CardManager CM;
     private SceneManager SM;
 
-    int amount_to_lose_on_round_end;
+    const int amount_to_lose_on_round_end = -2;
 
     void Start()
     {
@@ -37,10 +37,14 @@ public class CameraScript : MonoBehaviour
             List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
             for (int i = 0; i < survivors.Count; i++)
             {
-                survivors[i].Sanity -= amount_to_lose_on_round_end;
-                survivors[i].Hunger -= amount_to_lose_on_round_end;
+                survivors[i].Sanity = amount_to_lose_on_round_end;
+                survivors[i].Hunger = amount_to_lose_on_round_end;
             }
-            CM.CheckForIllness();
+
+            if(hand.Count > 0)
+            {
+                CM.CheckForIllness();
+            }
         }
         else
         {

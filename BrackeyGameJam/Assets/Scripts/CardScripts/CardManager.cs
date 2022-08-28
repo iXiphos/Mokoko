@@ -31,6 +31,8 @@ public class CardManager : MonoBehaviour
     void Start()
     {
         mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
+
         generateDeck();
     }
 
@@ -89,7 +91,7 @@ public class CardManager : MonoBehaviour
             }
         }
         ShuffleDeck();
-        hand.Clear();
+        //hand.Clear();
     }
 
     void Update()
@@ -177,7 +179,7 @@ public class CardManager : MonoBehaviour
             {
                 foreach(Survivor person in PM.party)
                 {
-                    person.Health -= 2;
+                    person.Health = -2;
                 }
             }
         }
@@ -187,7 +189,7 @@ public class CardManager : MonoBehaviour
     {
         foreach (Survivor person in PM.party)
         {
-            person.Sanity -= amount;
+            person.Sanity = -amount;
         }
     }
 
