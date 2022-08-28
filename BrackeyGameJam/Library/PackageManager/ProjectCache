@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637972259398269547
-    m_Hash: 3729827351
+      ticks: 637972412433351346
+    m_Hash: 3208697799
   m_LockFileStatus:
     m_FilePath: C:/Users/ana01/Desktop/Repos/Mokoko/BrackeyGameJam/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637972259398499689
-    m_Hash: 2054287544
+      ticks: 637972412433361339
+    m_Hash: 4212886578
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
