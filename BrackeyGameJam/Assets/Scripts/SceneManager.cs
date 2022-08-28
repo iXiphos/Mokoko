@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum LevelTypes
@@ -15,8 +16,14 @@ public class SceneManager : MonoBehaviour
     public GameObject[] restStops;
     public GameObject[] treasureStops;
 
+    public LevelTypes currentType;
+
     private GameObject InGameUI;
 
+    public void Awake()
+    {
+        currentType = LevelTypes.Reststop;
+    }
 
     public void Start()
     {
@@ -35,6 +42,7 @@ public class SceneManager : MonoBehaviour
 
     public void SpawnNextScene(LevelTypes levelType, string stopName = "")
     {
+        currentType = levelType;
         GameObject newLevel = pitStops[0];
         gameObject.GetComponent<PartyManager>().upgradePoints++;
         System.Random rand = new System.Random();
@@ -70,6 +78,8 @@ public class SceneManager : MonoBehaviour
                     newLevel = pitStops[rand.Next(0, pitStops.Length)];
                 }
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(true);
+                GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ASDASD";
+
                 break;
 
             case LevelTypes.Treasurestop:

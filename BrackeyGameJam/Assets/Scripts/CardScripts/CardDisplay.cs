@@ -11,6 +11,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     private CardManager CM;
     private GameObject Characters;
     private Survivor target;
+    private SceneManager SM;
     private Canvas mainCanvas;
     private PartyManager PM;
 
@@ -34,6 +35,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         target = null;
         mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         PM = GameObject.Find("GameManager").GetComponent<PartyManager>();
+        SM = GameObject.Find("GameManager").GetComponent<SceneManager>();
         Characters = GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").gameObject;
         CM = GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("CardManager").GetComponent<CardManager>();
     }
@@ -65,6 +67,7 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         //Change to in game text box
         Debug.Log(target.name + card.eventDescription);
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = card.eventDescription;
     }
 
     void SetResource(ResourceType type, int amount)
@@ -101,15 +104,21 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnDrag(PointerEventData eventData)
     {
-        this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
+        if (SM.currentType != LevelTypes.Reststop)
+        {
+            this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        CM.draggingCard = this.gameObject;
-        for (int i = 0; i < PM.party.Count; i++)
+        if(SM.currentType != LevelTypes.Reststop)
         {
-            Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = true;
+            CM.draggingCard = this.gameObject;
+            for (int i = 0; i < PM.party.Count; i++)
+            {
+                Characters.transform.Find("Character" + PM.party[i].id).GetComponent<CharStatsUI>().SelectState = true;
+            }
         }
     }
 
@@ -121,6 +130,12 @@ public class CardDisplay : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (SM.currentType != LevelTypes.Reststop)
+        {
+            return;
+        }
+        
+        
         CM.draggingCard = null;
         for (int i = 0; i < PM.party.Count; i++)
         {

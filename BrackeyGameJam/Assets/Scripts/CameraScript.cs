@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
@@ -10,6 +11,8 @@ public class CameraScript : MonoBehaviour
     private SceneManager SM;
 
     const int amount_to_lose_on_round_end = -2;
+
+    private bool startLock = false;
 
     void Start()
     {
@@ -40,16 +43,23 @@ public class CameraScript : MonoBehaviour
             List<GameObject> hand = GameObject.Find("CardManager").GetComponent<CardManager>().hand;
             for (int i = hand.Count; i < 6; i++) GameObject.Find("CardManager").GetComponent<CardManager>().DrawCard(1);
             List<Survivor> survivors = GameObject.Find("GameManager").GetComponent<PartyManager>().party;
-            for (int i = 0; i < survivors.Count; i++)
+
+            if(GameObject.Find("GameManager").GetComponent<SceneManager>().currentType != LevelTypes.Reststop && startLock)
             {
-                survivors[i].Sanity = amount_to_lose_on_round_end;
-                survivors[i].Hunger = amount_to_lose_on_round_end;
+                for (int i = 0; i < survivors.Count; i++)
+                {
+                    survivors[i].Sanity = amount_to_lose_on_round_end;
+                    survivors[i].Hunger = amount_to_lose_on_round_end;
+                }
+
+                //Change to print in text box
+                Debug.Log("All survivors take " + amount_to_lose_on_round_end + "'Hunger' and 'Sanity' damage");
+                GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "All survivors take: " + amount_to_lose_on_round_end + "'Hunger' and 'Sanity' damage";
             }
 
-            //Change to print in text box
-            Debug.Log("All survivors take " + amount_to_lose_on_round_end + "'Hunger' and 'Sanity' damage");
+            startLock = true;
 
-            if(hand.Count > 0)
+            if (hand.Count > 0)
             {
                 CM.CheckForIllness();
             }

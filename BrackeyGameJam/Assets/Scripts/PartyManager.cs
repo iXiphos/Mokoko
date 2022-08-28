@@ -71,6 +71,16 @@ public class PartyManager : MonoBehaviour
         upgradeScreen.SetActive(open);
     }
 
+    public void Rest()
+    {
+        foreach(Survivor sur in party)
+        {
+            sur.Health = 2;
+        }
+
+        GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("UpgradeUI").gameObject.SetActive(false);
+    }
+
     //0-6 {hunter, medic, chef, navigator, forager, mystic}, 0-4 Character #, Amount
     public void AddSkillPt(string input)
     {
