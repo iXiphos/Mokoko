@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0300000002000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' has safe passage for +1 increase in ''Sanity'' and a +1 decrease
+    in ''Hunger'''

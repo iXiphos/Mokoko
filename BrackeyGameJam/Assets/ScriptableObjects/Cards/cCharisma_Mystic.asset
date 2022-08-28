@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 02000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' has charisma for +1 increase in ''Sanity'''

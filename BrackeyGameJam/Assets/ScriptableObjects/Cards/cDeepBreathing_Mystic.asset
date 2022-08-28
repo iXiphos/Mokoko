@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0200000001000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' takes deep breaths for +2 increase in ''Sanity'' and -1 decrease
+    in ''Health'''

@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 03000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats berries for +1 increase in ''Hunger'''

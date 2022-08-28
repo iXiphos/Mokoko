@@ -19,3 +19,5 @@ MonoBehaviour:
   resourceType: 0300000001000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' eats rotten meat for +2 increase in ''Hunger'' and -3 decrease
+    in ''Health'''

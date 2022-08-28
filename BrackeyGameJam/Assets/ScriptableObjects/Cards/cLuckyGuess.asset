@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 010000000300000002000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' is very lucky to have a boost of +2 to all of their stats'

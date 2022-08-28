@@ -19,3 +19,4 @@ MonoBehaviour:
   resourceType: 01000000
   startingFunction: 
   ExternalFunction: 
+  eventDescription: ' uses medicine for +1 increase in ''Health'''
