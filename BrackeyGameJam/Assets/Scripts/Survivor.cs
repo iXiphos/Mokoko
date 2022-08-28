@@ -36,6 +36,8 @@ public class Survivor
             if (sanity <= 0)
             {
                 Debug.Log("--[" + this.name + "] has DIED from sanity. L");
+                GameObject.Find("GameManager").GetComponent<PartyManager>().Death(this);
+                MonoBehaviour.Destroy(GameObject.Find("MainCanvas").transform.Find("InGameUI").Find("Characters").Find("Character" + id).gameObject);
             }
         }
     }
