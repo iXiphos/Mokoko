@@ -49,6 +49,8 @@ public class PartyManager : MonoBehaviour
         }
 
         Debug.Log("Party size is:" + party.Count);
+
+        OpenUpgradeMenu(true);
     }
 
     // Update is called once per frame
@@ -84,7 +86,7 @@ public class PartyManager : MonoBehaviour
     public void Death(Survivor victim)
     {
         upgradeScreen.transform.Find("Player" + victim.id + " Upgrades").gameObject.SetActive(false);
-        //Destroy(GameObject.Find("MainCamera").transform.GetChild(0).Find("Player" + victim.id).gameObject);
+        Destroy(GameObject.Find("Main Camera").transform.GetChild(0).Find("Player" + victim.id).gameObject);
         party.Remove(victim);
     }
 

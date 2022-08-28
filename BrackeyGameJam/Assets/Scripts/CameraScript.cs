@@ -70,4 +70,26 @@ public class CameraScript : MonoBehaviour
             Canvas.transform.Find("MapView").GetChild(0).GetChild(0).GetComponent<MapScript>().UpdateMap();
         }
     }
+
+    public void StartShake()
+    {
+        StartCoroutine(ShakeCamera());
+    }
+
+    [SerializeField] private float cameraShakeDuration = 0.5f;
+    [SerializeField] private float cameraShakeDecreaseFactor = 1f;
+    [SerializeField] private float cameraShakeAmount = 1f;
+    // coroutine
+    IEnumerator ShakeCamera()
+    {
+        var originalPos = this.transform.localPosition;
+        var duration = cameraShakeDuration;
+        while (duration > 0)
+        {
+            this.transform.localPosition = originalPos + UnityEngine.Random.insideUnitSphere * cameraShakeAmount;
+            duration -= Time.deltaTime * cameraShakeDecreaseFactor;
+            yield return null;
+        }
+        this.transform.localPosition = originalPos;
+    }
 }

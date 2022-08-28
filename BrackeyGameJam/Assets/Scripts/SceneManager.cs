@@ -75,7 +75,7 @@ public class SceneManager : MonoBehaviour
                 }
                 else
                 {
-                    newLevel = pitStops[rand.Next(0, pitStops.Length)];
+                    newLevel = pitStops[rand.Next(0, restStops.Length)];
                 }
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(true);
                 GameObject.Find("MainCanvas").transform.Find("InGameUI").transform.Find("EventDescription").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ASDASD";
@@ -93,7 +93,7 @@ public class SceneManager : MonoBehaviour
                 }
                 else
                 {
-                    newLevel = pitStops[rand.Next(0, pitStops.Length)];
+                    newLevel = pitStops[rand.Next(0, treasureStops.Length)];
                 }
                 InGameUI.transform.Find("UpgradeUI").gameObject.SetActive(false);
                 break;
